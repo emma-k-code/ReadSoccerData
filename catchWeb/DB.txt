@@ -1,0 +1,36 @@
+create table betting
+(
+    bID int auto_increment primary key,
+    datetime DATETIME not null,
+    league VARCHAR(50) not null,
+    leagueEvents VARCHAR(100) not null,
+    runningBall VARCHAR(10),
+    allSingleA VARCHAR(10),
+    allHandicapA VARCHAR(20),
+    allOverUnderA VARCHAR(20),
+    allOddEvenA VARCHAR(10),
+    halfSingleA VARCHAR(10),
+    halfHandicapA VARCHAR(20),
+    halfOverUnderA VARCHAR(20),
+    allSingleB VARCHAR(10),
+    allHandicapB VARCHAR(20),
+    allOverUnderB VARCHAR(20),
+    allOddEvenB VARCHAR(10),
+    halfSingleB VARCHAR(10),
+    halfHandicapB VARCHAR(20),
+    halfOverUnderB VARCHAR(20),
+    allSingleD VARCHAR(10),
+    halfSingleD VARCHAR(10)
+);
+
+UPDATE `betting` SET `datetime`=[value-2],`league`=[value-3],`leagueEvents`=[value-4],`runningBall`=[value-5],`allSingleA`=[value-6],`allHandicapA`=[value-7],`allOverUnderA`=[value-8],`allOddEvenA`=[value-9],`halfSingleA`=[value-10],`halfHandicapA`=[value-11],`halfOverUnderA`=[value-12],`allSingleB`=[value-13],`allHandicapB`=[value-14],`allOverUnderB`=[value-15],`allOddEvenB`=[value-16],`halfSingleB`=[value-17],`halfHandicapB`=[value-18],`halfOverUnderB`=[value-19],`allSingleD`=[value-20],`halfSingleD`=[value-21]
+WHERE `bID` = :id
+
+SELECT `bID`, `allSingleA` FROM `betting` WHERE `datetime` = :date AND `league` = :league AND `leagueEvents` = :event AND `runningBall` = :runinng
+
+INSERT INTO `betting`(`datetime`,`league`,`leagueEvents`,`runningBall`,`allSingleA`,`allHandicapA`,
+`allOverUnderA`,`allOddEvenA`,`halfSingleA`,`halfHandicapA`,`halfOverUnderA`,`allSingleB`,
+`allHandicapB`,`allOverUnderB`,`allOddEvenB`,`halfSingleB`,`halfHandicapB`,`halfOverUnderB`,`allSingleD`,`halfSingleD`)
+VALUES (:date, :league, :events, :runinng , :allSingleA, :allHandicapA, :allOverUnderA, :allOddEvenA,
+:halfSingleA, :halfHandicapA, :halfOverUnderA, :allSingleB, :allHandicapB, :allOverUnderB, :allOddEvenB, :halfSingleB, :halfHandicapB, :halfOverUnderB,
+:allSingleD, :halfSingleD)
