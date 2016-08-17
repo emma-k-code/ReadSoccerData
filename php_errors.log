@@ -1,0 +1,38 @@
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Warning:  file_get_contents(web/1.html): failed to open stream: No such file or directory in /home/ubuntu/workspace/memcache/CatchWeb.php on line 21
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   3. file_get_contents(*uninitialized*) /home/ubuntu/workspace/memcache/CatchWeb.php:21
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Warning:  unlink(web/1.html): No such file or directory in /home/ubuntu/workspace/memcache/CatchWeb.php on line 22
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   3. unlink(*uninitialized*) /home/ubuntu/workspace/memcache/CatchWeb.php:22
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Warning:  DOMDocument::loadHTML(): Empty string supplied as input in /home/ubuntu/workspace/memcache/CatchWeb.php on line 29
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   3. DOMDocument->loadHTML(*uninitialized*) /home/ubuntu/workspace/memcache/CatchWeb.php:29
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Warning:  Invalid argument supplied for foreach() in /home/ubuntu/workspace/memcache/CatchWeb.php on line 48
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:25:51 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Warning:  file_get_contents(web/1.html): failed to open stream: No such file or directory in /home/ubuntu/workspace/memcache/CatchWeb.php on line 21
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   3. file_get_contents(*uninitialized*) /home/ubuntu/workspace/memcache/CatchWeb.php:21
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Warning:  unlink(web/1.html): No such file or directory in /home/ubuntu/workspace/memcache/CatchWeb.php on line 22
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   3. unlink(*uninitialized*) /home/ubuntu/workspace/memcache/CatchWeb.php:22
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Warning:  DOMDocument::loadHTML(): Empty string supplied as input in /home/ubuntu/workspace/memcache/CatchWeb.php on line 29
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   3. DOMDocument->loadHTML(*uninitialized*) /home/ubuntu/workspace/memcache/CatchWeb.php:29
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Warning:  Invalid argument supplied for foreach() in /home/ubuntu/workspace/memcache/CatchWeb.php on line 48
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP Stack trace:
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   1. {main}() /home/ubuntu/workspace/memcache/auto.php:0
+[17-Aug-2016 17:26:03 Asia/Taipei] PHP   2. catchWeb->resolveWeb() /home/ubuntu/workspace/memcache/auto.php:11
