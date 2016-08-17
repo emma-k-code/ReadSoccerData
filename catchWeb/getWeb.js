@@ -15,6 +15,3 @@ page.open("http://www.228365365.com/sports.php", function() {
     phantom.exit();
 
 });
-
-
-
