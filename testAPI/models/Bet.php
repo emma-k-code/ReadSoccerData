@@ -6,12 +6,11 @@
  */
 require_once 'Database.php';
 
-class Bet
+class Bet extends Database
 {
     public function selectAll() {
-        $db = new Database;
         $sql = "SELECT `bID`, `updateTime` FROM `betting`";
-        $result = $db->prepare($sql);
+        $result = $this->prepare($sql);
         $result->execute();
 
         $betData = $result->fetchAll(PDO::FETCH_CLASS);
@@ -20,9 +19,8 @@ class Bet
     }
 
     public function selectContent($id) {
-        $db = new Database;
         $sql = "SELECT * FROM `betting` WHERE `bID` = :id";
-        $result = $db->prepare($sql);
+        $result = $this->prepare($sql);
         $result->bindParam('id', $id);
         $result->execute();
 
