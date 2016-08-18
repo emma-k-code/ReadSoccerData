@@ -32,6 +32,10 @@ class catchWeb extends Database
 
         $entries = $xpath->query('//*[@id="game_table"]/tbody/tr');
 
+        if ($entries->length < 4) {
+            return;
+        }
+
         $i = 0;
         foreach ($entries as $key=>$entry) {
             $td = $xpath->query('./td', $entry);
@@ -43,6 +47,10 @@ class catchWeb extends Database
             if (($key != 0) && (($key % 4) == 0)) {
                 $i++;
             }
+        }
+
+        if (sizeof($output[0]) == 1) {
+            return;
         }
 
         foreach ($output as $key=> $value) {

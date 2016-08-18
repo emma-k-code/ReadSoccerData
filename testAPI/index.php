@@ -34,15 +34,18 @@ if ($method == 'GET') {
 
     if (strpos($requestContentType,'application/json') !== false) {
         echo json_encode($betData,JSON_UNESCAPED_UNICODE);
+        exit;
     }
 
     if (strpos($requestContentType,'text/html') !== false) {
         echo json_encode($betData,JSON_UNESCAPED_UNICODE);
+        exit;
     }
 
     if(strpos($requestContentType,'application/xml') !== false){
         $response = encodeXml($betData);
         echo $response;
+        exit;
     }
 }
 
