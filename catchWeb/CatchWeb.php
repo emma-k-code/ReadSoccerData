@@ -45,6 +45,7 @@ class catchWeb extends Database
             }
 
             if (($key != 0) && (($key % 4) == 0)) {
+                $output[$i][] = $xpath->evaluate('string(./@id)', $entry);
                 $i++;
             }
         }
@@ -70,7 +71,7 @@ class catchWeb extends Database
             date_default_timezone_set('Asia/Taipei');
             $updateTime = date("Y-m-d H:i:s");
 
-            $id = $this->checkBet($datetime, $running, $event, $value);
+            $id = $this->checkBet(end($value));
 
             if (is_numeric($id)) {
                 $this->updateBet($id, $updateTime, $datetime, $running, $event, $value);
@@ -83,48 +84,17 @@ class catchWeb extends Database
     /**
      * 確認是否已有該賭盤
      *
-     * @param string $datetime 賽事時間
-     * @param string $running 是否為滾球
-     * @param string $event 比賽隊伍
-     * @param string $value 賭盤資料
+     * @param string $webID 網頁上的編號
      */
-    private function checkBet($datetime, $running, $event, $value)
+    private function checkBet($webID)
     {
-        $sql = "SELECT * FROM `betting` " .
-        "WHERE `datetime` = :date AND `league` = :league AND " .
-        "`leagueEvents` = :event AND `runningBall` = :runinng";
+        $sql = "SELECT `bID` FROM `bettingID` WHERE `webID` = :webID";
         $result = $this->prepare($sql);
-        $result->bindParam('date', $datetime);
-        $result->bindParam('league', $value[0]);
-        $result->bindParam('event', $event);
-        $result->bindParam('runinng', $running);
+        $result->bindParam('webID', $webID);
         $result->execute();
+        $betID = $result->fetchColumn();
 
-        $betData = $result->fetchAll();
-        foreach ($betData as $data) {
-
-            if (is_numeric($value[3]) && is_numeric($data['allSingleA'])) {
-                return $data['bID'];
-            }
-
-            if ((!(is_numeric($value[3]))) && (!(is_numeric($data['allSingleA'])))) {
-                if (($value[5] != '') && ($data['allOverUnderA'] != '') && ($value[9] == '') && ($data['halfOverUnderA'] == '')) {
-                    return $data['bID'];
-                }
-
-                if (($value[5] == '') && ($data['allOverUnderA'] == '') && ($value[9] != '') && ($data['halfOverUnderA'] != '')) {
-                    return $data['bID'];
-                }
-
-                if (($value[5] != '') && ($data['allOverUnderA'] != '') && ($value[9] != '') && ($data['halfOverUnderA'] != '')) {
-                    return $data['bID'];
-                }
-
-                if (($value[5] == '') && ($data['allOverUnderA'] == '') && ($value[9] == '') && ($data['halfOverUnderA'] == '')) {
-                    return $data['bID'];
-                }
-            }
-        }
+        return $betID;
     }
 
     /**
@@ -173,7 +143,7 @@ class catchWeb extends Database
         $sth->bindParam('halfOverUnderB', $value[16]);
         $sth->bindParam('allSingleD', $value[18]);
         $sth->bindParam('halfSingleD', $value[20]);
-        $s = $sth->execute();
+        $sth->execute();
     }
 
     /**
@@ -220,6 +190,14 @@ class catchWeb extends Database
         $sth->bindParam('halfOverUnderB', $value[16]);
         $sth->bindParam('allSingleD', $value[18]);
         $sth->bindParam('halfSingleD', $value[20]);
+        $sth->execute();
+
+        $id = $this->lastInsertId();
+
+        $sql = "INSERT INTO `bettingID`(`bID`, `webID`) VALUES (:id, :webID)";
+        $sth = $this->prepare($sql);
+        $sth->bindParam('id', $id);
+        $sth->bindParam('webID', end($value));
         $sth->execute();
     }
 
