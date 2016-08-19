@@ -15,11 +15,13 @@ class catchWeb extends Database
      */
     public function resolveWeb()
     {
-
+        // 執行command上的phantomjs指令
         shell_exec('phantomjs getWeb.js');
 
         $contents = file_get_contents('web/1.html');
         unlink('web/1.html');
+
+        // 取得賽事日期
         $today = explode('top.today_gmt = ',$contents);
         $today = substr($today[1],1,10);
 
@@ -32,10 +34,6 @@ class catchWeb extends Database
 
         $entries = $xpath->query('//*[@id="game_table"]/tbody/tr');
 
-        if ($entries->length < 4) {
-            return;
-        }
-
         $i = 0;
         foreach ($entries as $key=>$entry) {
             $td = $xpath->query('./td', $entry);
@@ -45,11 +43,13 @@ class catchWeb extends Database
             }
 
             if (($key != 0) && (($key % 4) == 0)) {
+                // 網頁上的賭盤ID
                 $output[$i][] = $xpath->evaluate('string(./@id)', $entry);
                 $i++;
             }
         }
 
+        // 確認網頁中是否有賽事資料
         if (sizeof($output[0]) == 1) {
             return;
         }
@@ -74,9 +74,21 @@ class catchWeb extends Database
             $id = $this->checkBet(end($value));
 
             if (is_numeric($id)) {
-                $this->updateBet($id, $updateTime, $datetime, $running, $event, $value);
+                $this->updateBet(
+                    $id,
+                    $updateTime,
+                    $datetime, $running,
+                    $event,
+                    $value
+                );
             } else {
-                $this->insertBet($updateTime, $datetime, $running, $event, $value);
+                $this->insertBet(
+                    $updateTime,
+                    $datetime,
+                    $running,
+                    $event,
+                    $value
+                );
             }
         }
     }
@@ -106,8 +118,14 @@ class catchWeb extends Database
      * @param string $event 比賽隊伍
      * @param string $value 賭盤資料
      */
-    private function updateBet($id, $updateTime, $datetime, $running, $event, $value)
-    {
+    private function updateBet(
+        $id,
+        $updateTime,
+        $datetime,
+        $running,
+        $event,
+        $value
+    ) {
         $sql = "UPDATE `betting` SET `updateTime` = :update, " .
         "`datetime` = :date, `league` = :league, " .
         "`leagueEvents` = :event, `runningBall` = :runinng, " .
@@ -154,8 +172,13 @@ class catchWeb extends Database
      * @param string $event 比賽隊伍
      * @param string $value 賭盤資料
      */
-    private function insertBet($updateTime, $datetime, $running, $event, $value)
-    {
+    private function insertBet(
+        $updateTime,
+        $datetime,
+        $running,
+        $event,
+        $value
+    ) {
         $sql = "INSERT INTO `betting`(`updateTime`, `datetime`, `league`, " .
         "`leagueEvents`, `runningBall`, `allSingleA`, " .
         "`allHandicapA`, `allOverUnderA`, `allOddEvenA`, " .
