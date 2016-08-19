@@ -23,3 +23,9 @@ create table betting
     allSingleD VARCHAR(10),
     halfSingleD VARCHAR(10)
 );
+
+create table bettingID
+(
+    bID int,
+    webID VARCHAR(15)
+);
